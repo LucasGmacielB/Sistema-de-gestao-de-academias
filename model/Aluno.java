@@ -5,7 +5,7 @@ public class Aluno {
     private int id;
     private int idade;
     private Plano plano;
-    private boolean status;
+    private boolean status = false;
 
     public Aluno(String nome, int idade, int id, Plano plano) {
         this.nome = nome;
@@ -38,9 +38,10 @@ public class Aluno {
     public void setPlano(Plano plano) {
         this.plano = plano;
     }
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
@@ -49,9 +50,13 @@ public class Aluno {
     @Override
     public String toString() {
         String infoAluno;
-        infoAluno = String.format("ID: %s | Nome: %s | Idade: %d | Plano: %s", id, nome, idade, plano.getNome());
+        infoAluno = String.format("ID: %s | Nome: %s | Idade: %d | Plano: %s | Status de pagamento: %s",
+        id,
+        nome,
+        idade,
+        plano.getNome(),
+        status ? "Pago" : "Pendente");
+
         return infoAluno;
     }
-
-    
 }

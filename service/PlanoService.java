@@ -1,11 +1,12 @@
 package service;
 
+import java.util.List;
+
 import model.Plano;
 import repository.PlanoRepository;
 
 public class PlanoService {
     private PlanoRepository repository;
-    private Plano pl;
     private boolean haPlanos;
 
     public boolean getHaPlanos() {
@@ -43,24 +44,27 @@ public class PlanoService {
     }
 
     public void listarPlanos() {
-        if (pl == null) {
+        List<Plano> pl = repository.listarTodosPlanos();
+        if (pl.isEmpty()) {
             System.out.println("Não foram cadastrados nenhum plano!");
             haPlanos = false;
             return;
         }
-        for(Plano p : repository.listarTodosPlanos()) {
+        for(Plano p : pl) {
             System.out.println(p);
         }
+        haPlanos = true;
     }
 
     public void vefiricarId(int id) {
+        Plano pl = repository.buscarIdPlano(id);
         if (pl == null) {
             return;
         }
-        if (id < 0) {
+        if (id <= 0) {
             System.out.println("O código do plano não pode ser negativo!");
             return;
-        } else if(id > this.id) {
+        } else if(this.id < id) {
             System.out.println("O código esta incorreto!");
             return;
         }

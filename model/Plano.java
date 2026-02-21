@@ -42,7 +42,7 @@ public class Plano {
 
     @Override
     public String toString() {
-        String infoPlanos = String.format("ID: %s | Nome do plano: %s | Preço: %.2f | Duração: %d meses", id, nome, preco, duracao);
+        String infoPlanos = String.format("ID: %s | Nome do plano: %s | Preço: %.2f | Duração: %d mes(s)", id, nome, preco, duracao);
         return infoPlanos;
     }
 }
